@@ -1,0 +1,34 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 325px;
+  height: 100vh;
+  box-shadow: 3px 0px 6px rgba(0, 0, 0, 0.15);
+}
+.container h2 {
+  margin: auto;
+  text-align: center;
+  font-weight: 300;
+}
+
+.container ul {
+  margin: 0;
+  padding: 0px 10px 0px 10px;
+}
+
+.container ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.container ul li:hover {
+  cursor: pointer;
+}
