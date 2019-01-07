@@ -19,6 +19,10 @@
   <a href="https://yarnpkg.com/"><img src="./internals/img/yarn-padded-90.png" /></a>
 </div>
 
+## Demo of Design
+
+If you wish to view what the app could look like, [view the sample](https://xd.adobe.com/view/e27d9eaf-8332-43c5-55a0-ab11d8c905a7-944c/).
+
 <hr />
 <br />
 
