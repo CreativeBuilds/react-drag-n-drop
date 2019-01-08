@@ -1,0 +1,97 @@
+.app {
+  width: auto;
+  height: 100vh;
+  margin-left: 325px;
+  overflow-y: auto;
+}
+.wrapper {
+  padding-left: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  min-height: 50px;
+  position: relative;
+}
+.title {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 18px;
+  width: 100%;
+  z-index: 10;
+}
+.add svg:hover {
+  cursor: pointer;
+}
+
+.Select {
+  min-width: 300px;
+  min-height: 400px;
+  padding: 20px;
+  z-index: 105;
+}
+
+.dropdown {
+  height: 50px;
+  max-height: 50px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.33);
+  position: relative;
+  transition: all 0.3s ease;
+}
+.dropdown_title {
+  min-height: 30px;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.dropdown_title:hover {
+  cursor: pointer;
+}
+.dropdown_title svg {
+  position: absolute;
+  right: 10px;
+}
+
+.animated {
+  transition: all 0.3s ease;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.opened {
+  height: 100px;
+  max-height: 100px;
+}
+.input {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  width: 100%;
+  min-height: 30px;
+}
+.list {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.3s ease;
+  display: block !important;
+}
+.list li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.visible {
+  opacity: 1 !important;
+}

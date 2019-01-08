@@ -10,3 +10,14 @@
   justify-content: center;
   align-items: center;
 }
+.overlay_click {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  z-index: 0;
+}
+.overlay_click:hover {
+  cursor: pointer;
+}

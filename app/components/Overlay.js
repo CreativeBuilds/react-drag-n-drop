@@ -18,6 +18,12 @@ class Overlay extends Component<Props> {
     console.log('Should render component!');
     return (
       <div className={styles.overlay} data-tid="overlay">
+        <div
+          className={styles.overlay_click}
+          onClick={() => {
+            this.props.onClick();
+          }}
+        />
         {props.component}
       </div>
     );

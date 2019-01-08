@@ -6,6 +6,7 @@ import styles from './MainWrapper.css';
 
 import Menu from './Menu';
 import Overlay from './Overlay';
+import App from './App';
 import { ThemeContext } from '../utils/theme-context';
 
 type Props = {};
@@ -40,8 +41,11 @@ class MainWrapper extends Component<Props> {
           updateOverlay={this.updateOverlay}
           closeOverlay={this.closeOverlay}
         />
-        {/* <App></App> */}
-        <Overlay component={this.state.component} />
+        <App
+          updateOverlay={this.updateOverlay}
+          closeOverlay={this.closeOverlay}
+        />
+        <Overlay component={this.state.component} onClick={this.closeOverlay} />
       </div>
     );
   }
