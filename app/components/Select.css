@@ -1,34 +1,3 @@
-.app {
-  width: auto;
-  height: 100vh;
-  margin-left: 325px;
-  overflow-y: auto;
-}
-.wrapper {
-  padding-left: 10px;
-  padding-bottom: 10px;
-  width: 100%;
-  min-height: 50px;
-  position: relative;
-}
-.title {
-  height: 30px;
-  display: flex;
-  align-items: center;
-}
-.add {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 18px;
-  width: 100%;
-  z-index: 10;
-}
-.add svg:hover {
-  cursor: pointer;
-}
-
 .Select {
   min-width: 300px;
   min-height: auto;
