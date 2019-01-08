@@ -1,3 +1,4 @@
 module.exports = {
-  background: require('./background/app')
+  app: require('./app/app'),
+  body: require('./body/app')
 };

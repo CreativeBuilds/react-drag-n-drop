@@ -9,16 +9,28 @@ import Overlay from './Overlay';
 import App from './App';
 import { ThemeContext } from '../utils/theme-context';
 
+import Elements from '../siteComponents';
+let ScratchElements = {};
+
+Object.keys(Elements).map(key => {
+  ScratchElements[key] = Elements[key].options;
+});
+
 type Props = {};
 
 class MainWrapper extends Component<Props> {
   props: Props;
-
+  // This element needs to know all possible elements
   constructor(props) {
     super(props);
     this.state = {
-      component: null
+      component: null,
+      components: {}
     };
+  }
+
+  componentDidMount() {
+    console.log(require('../siteComponents'), 'TEST!');
   }
 
   updateOverlay = component => {
@@ -40,6 +52,7 @@ class MainWrapper extends Component<Props> {
         <Menu
           updateOverlay={this.updateOverlay}
           closeOverlay={this.closeOverlay}
+          ScratchElements={ScratchElements}
         />
         <App
           updateOverlay={this.updateOverlay}

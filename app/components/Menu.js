@@ -88,6 +88,7 @@ class Menu extends Component<Props> {
             theme={theme}
             updateOverlay={props.updateOverlay}
             closeOverlay={props.closeOverlay}
+            Elements={props.ScratchElements}
           />
         ) : null}
         {this.state.page == 2 ? (

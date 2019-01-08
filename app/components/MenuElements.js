@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 import routes from '../constants/routes';
 import styles from './MenuElements.css';
 import { ThemeContext } from '../utils/theme-context';
-import Elements from '../siteComponents';
-
-Object.keys(Elements).map(key => {
-  Elements[key] = Elements[key].options;
-});
 
 import { MdAdd, MdEdit, MdClose } from 'react-icons/md';
 
@@ -43,6 +38,7 @@ class CreateElement extends Component<Props> {
   };
   addComponent = () => {
     let name = this.state.componentName.toLowerCase();
+    let Elements = this.props.Elements;
     // TODO replace return with an error
     if (Elements[name]) {
       this.newError('Component with that name already exists!');
@@ -139,7 +135,8 @@ class MenuElements extends Component<Props> {
   };
 
   deleteElement = name => {
-    return delete Elements[name];
+    console.log('TRIED DELETING ELEMENT');
+    return false;
   };
 
   generateElement = vars => {
@@ -230,8 +227,8 @@ class MenuElements extends Component<Props> {
         >
           <MdAdd size="36px" />
         </li>
-        {Object.keys(Elements).map(key => {
-          let item = Elements[key];
+        {Object.keys(props.Elements).map(key => {
+          let item = props.Elements[key];
           console.log('ITEM:', item);
           return (
             <li
