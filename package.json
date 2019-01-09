@@ -262,7 +262,11 @@
     "electron-debug": "^2.0.0",
     "electron-log": "^2.2.17",
     "electron-updater": "^4.0.6",
+    "fs": "^0.0.1-security",
+    "fs-readfile-promise": "^3.0.1",
+    "fs-writefile-promise": "^3.0.1",
     "history": "^4.7.2",
+    "mkdir-promise": "^1.0.0",
     "node-uuid": "^1.4.8",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -276,7 +280,8 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0",
     "source-map-support": "^0.5.9",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "valid-filename": "^2.0.1"
   },
   "devEngines": {
     "node": ">=7.x",

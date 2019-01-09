@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom';
 import routes from '../constants/routes';
 import styles from './MainWrapper.css';
 
+import fs from 'fs';
+import validFilename from 'valid-filename';
+
 import Menu from './Menu';
 import Overlay from './Overlay';
 import App from './App';
 import { ThemeContext } from '../utils/theme-context';
+
+import path from 'path';
 
 import Elements from '../siteComponents';
 let ScratchElements = {};
@@ -25,7 +30,7 @@ class MainWrapper extends Component<Props> {
     super(props);
     this.state = {
       component: null,
-      components: {}
+      components: ScratchElements
     };
   }
 
@@ -41,6 +46,67 @@ class MainWrapper extends Component<Props> {
     this.setState({ component: null });
   };
 
+  makeNewComponent = (opts = {}) => {
+    // alert('DIRNAME ' + __dirname);
+    let { name = 'john' } = opts;
+    if (!validFilename(name)) return;
+
+    // Blame FS for this shit \/
+    // TODO REFACTORING - make a writeFile function that returns a promise
+    fs.mkdir(
+      __dirname + `/siteComponents/${name}`,
+      { recursive: true },
+      err => {
+        if (err) throw err;
+        fs.writeFile(
+          __dirname + `/siteComponents/${name}` + '/options.js',
+          require('../templates/div').generateOptions({
+            options: { componentName: name }
+          }),
+          err => {
+            if (err) throw err;
+            fs.writeFile(
+              __dirname + `/siteComponents/${name}` + '/app.js',
+              require('../templates/div').generateComponent(),
+              err => {
+                if (err) throw err;
+                fs.writeFile(
+                  __dirname + `/siteComponents/${name}` + '/index.css',
+                  require('../templates/div').generateCss(),
+                  err => {
+                    if (err) throw err;
+                    let content;
+                    // Made all the shit for a component! POG
+                    fs.readFile(
+                      __dirname + '/siteComponents/index.js',
+                      'utf8',
+                      function(err, data) {
+                        if (err) {
+                          throw err;
+                        }
+                        let content =
+                          data.slice(0, -4) +
+                          ',\n' +
+                          `  ${name}: require('./${name}/app')\n};\n`;
+                        fs.writeFile(
+                          __dirname + '/siteComponents/index.js',
+                          content,
+                          err => {
+                            if (err) throw err;
+                          }
+                        );
+                      }
+                    );
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
+    );
+  };
+
   render() {
     let theme = this.context;
     return (
@@ -53,6 +119,7 @@ class MainWrapper extends Component<Props> {
           updateOverlay={this.updateOverlay}
           closeOverlay={this.closeOverlay}
           ScratchElements={ScratchElements}
+          makeNewComponent={this.makeNewComponent}
         />
         <App
           updateOverlay={this.updateOverlay}

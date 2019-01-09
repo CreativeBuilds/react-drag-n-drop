@@ -5,6 +5,8 @@ import routes from '../constants/routes';
 import styles from './MenuElements.css';
 import { ThemeContext } from '../utils/theme-context';
 
+import validFilename from 'valid-filename';
+
 import { MdAdd, MdEdit, MdClose } from 'react-icons/md';
 
 type Props = {};
@@ -31,6 +33,7 @@ class CreateElement extends Component<Props> {
     this.setState({ error: null });
   };
   newError = error => {
+    console.log('Should set state!', error);
     this.setState({ error });
     setTimeout(() => {
       this.clearError();
@@ -44,9 +47,15 @@ class CreateElement extends Component<Props> {
       this.newError('Component with that name already exists!');
       return;
     }
+    if (!validFilename(name) || name.includes(' ') || name.includes('-')) {
+      return this.newError('Invalid name, no special chars!');
+    }
     let obj = Object.assign({}, this.state);
     delete obj.error;
-    Elements[name] = obj;
+    this.props.makeNewComponent({
+      name: this.state.componentName,
+      desc: this.state.description
+    });
     this.props.closeOverlay();
   };
 
@@ -62,7 +71,12 @@ class CreateElement extends Component<Props> {
         }}
       >
         {this.state.error ? (
-          <div className={styles.error}>{this.state.error}</div>
+          <div
+            className={styles.error}
+            style={{ backgroundColor: theme.error, color: theme.errorText }}
+          >
+            {this.state.error}
+          </div>
         ) : null}
         <div>
           <br />
@@ -208,7 +222,13 @@ class MenuElements extends Component<Props> {
   createElement = () => {
     let theme = this.context;
     let props = this.props;
-    return <CreateElement closeOverlay={props.closeOverlay} />;
+    return (
+      <CreateElement
+        closeOverlay={props.closeOverlay}
+        Elements={props.Elements}
+        makeNewComponent={props.makeNewComponent}
+      />
+    );
   };
 
   render() {
@@ -229,7 +249,6 @@ class MenuElements extends Component<Props> {
         </li>
         {Object.keys(props.Elements).map(key => {
           let item = props.Elements[key];
-          console.log('ITEM:', item);
           return (
             <li
               style={{
@@ -240,7 +259,12 @@ class MenuElements extends Component<Props> {
               key={key}
             >
               <MdEdit
-                style={{ position: 'absolute', top: '5px', right: '5px' }}
+                style={{
+                  position: 'absolute',
+                  top: '5px',
+                  right: '5px',
+                  display: item.default ? 'none' : 'block'
+                }}
                 size="20px"
                 onClick={() => {
                   props.updateOverlay(this.generateElement(item));
