@@ -75,12 +75,21 @@ class Select extends Component<Props> {
     let { children } = props;
     return (
       <div
-        className={styles.dropdown + ' ' + (state.opened ? styles.opened : '')}
+        className={
+          styles.dropdown +
+          ' ' +
+          (state.opened ? styles.opened : '') +
+          ' ' +
+          (props.title ? styles.headerMargin : '')
+        }
         style={{
           backgroundColor: theme.secondaryOff,
           color: theme.secondaryText
         }}
       >
+        {props.title ? (
+          <div className={styles.header}>{props.title}</div>
+        ) : null}
         <div
           className={
             styles.dropdown_title + ' ' + (state.opened ? styles.titleOpen : '')
@@ -88,7 +97,7 @@ class Select extends Component<Props> {
         >
           <input
             className={styles.input}
-            placeholder={'Search...'}
+            placeholder={props.placeholder || 'Search...'}
             value={props.search}
             onChange={props.updateSearch}
             type={'text'}
@@ -145,6 +154,16 @@ class Select extends Component<Props> {
   }
 }
 
+Select.PropTypes = {
+  children: PropTypes.Object,
+  select: PropTypes.String,
+  search: PropTypes.String,
+  updateSearch: PropTypes.Function,
+  path: PropTypes.String,
+  newError: PropTypes.Function,
+  clearError: PropTypes.Function,
+  title: PropTypes.String
+};
 Select.contextType = ThemeContext;
 
 export default Select;

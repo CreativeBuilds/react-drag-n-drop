@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes';
-import styles from './Select.css';
+import styles from './InputText.css';
 import { ThemeContext } from '../utils/theme-context';
 
 // import uuidv4 from 'uuid/v4';
@@ -25,14 +25,6 @@ class InputText extends Component<Props> {
     };
   }
 
-  updateSearch = e => {
-    this.setState({ search: e.target.value });
-  };
-
-  select = val => {
-    this.setState({ search: val });
-  };
-
   clearError = () => {
     this.setState({ error: null });
   };
@@ -50,72 +42,24 @@ class InputText extends Component<Props> {
     let { children } = props;
     return (
       <div
-        className={styles.Select}
-        style={{ backgroundColor: theme.secondary }}
+        className={
+          styles.input_title + ' ' + (props.title ? styles.headerMargin : '')
+        }
       >
-        {this.state.error ? (
-          <div
-            className={styles.error}
-            style={{ backgroundColor: theme.error, color: theme.errorText }}
-          >
-            {this.state.error}
-            <MdClose
-              className={styles.error_close}
-              size="24px"
-              onClick={() => {
-                this.clearError();
-              }}
-            />
-          </div>
+        {props.title ? (
+          <div className={styles.header}>{props.title}</div>
         ) : null}
-        <div
-          className={
-            styles.dropdown + ' ' + (state.opened ? styles.opened : '')
-          }
+        <input
+          className={styles.input}
+          placeholder={props.placeholder || 'Search...'}
+          value={props.search}
+          onChange={props.onChange}
+          type={'text'}
           style={{
             backgroundColor: theme.secondaryOff,
             color: theme.secondaryText
           }}
-        >
-          <div className={styles.dropdown_title}>
-            <input
-              className={styles.input}
-              placeholder={'Search...'}
-              value={this.state.search}
-              onChange={this.updateSearch}
-              type={'text'}
-              onClick={() => {
-                this.open();
-              }}
-            />
-            <MdKeyboardArrowUp
-              size="32px"
-              className={
-                styles.animated + ' ' + (state.opened ? styles.rotate : '')
-              }
-              onClick={() => {
-                this.toggle();
-              }}
-            />
-          </div>
-        </div>
-        {/* <div
-          className={styles.submit}
-          onClick={() => {
-            if (this.hasValidSelected()) {
-              props.submit(this.state.search);
-              props.close();
-            } else {
-              this.newError('No valid element selected!');
-            }
-          }}
-          style={{
-            backgroundColor: theme.secondaryText,
-            color: theme.secondary
-          }}
-        >
-          SUBMIT
-        </div> */}
+        />
       </div>
     );
   }

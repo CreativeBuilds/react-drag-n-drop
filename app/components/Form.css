@@ -1,6 +1,8 @@
 .Select {
   min-width: 300px;
   min-height: auto;
+  max-height: 80vh;
+  overflow: auto;
   padding: 20px;
   z-index: 105;
 }

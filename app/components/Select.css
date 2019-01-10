@@ -10,6 +10,7 @@
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.33);
   position: relative;
   transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 .dropdown_title {
   min-height: 30px;
@@ -110,4 +111,17 @@
 }
 .error_close:hover {
   cursor: pointer;
+}
+
+.header {
+  position: absolute;
+  top: -20px;
+  font-size: 15px;
+  left: 0;
+}
+.headerMargin {
+  margin-top: 35px;
+}
+.headerMargin:nth-child(1) {
+  margin-top: 10px;
 }

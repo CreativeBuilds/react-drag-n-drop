@@ -6,9 +6,12 @@ import styles from './MenuElements.css';
 import { ThemeContext } from '../utils/theme-context';
 
 import validFilename from 'valid-filename';
-import { deleteComponent } from '../utils/helpers';
+import { deleteComponent, getTemplates } from '../utils/helpers';
 
 import { MdAdd, MdEdit, MdClose } from 'react-icons/md';
+
+import Select from './Select';
+import Input from './InputText';
 
 type Props = {};
 
@@ -20,7 +23,8 @@ class CreateElement extends Component<Props> {
       default: false,
       description: '',
       variables: {},
-      error: null
+      error: null,
+      search: ''
     };
   }
 
@@ -34,7 +38,6 @@ class CreateElement extends Component<Props> {
     this.setState({ error: null });
   };
   newError = error => {
-    console.log('Should set state!', error);
     this.setState({ error });
     setTimeout(() => {
       this.clearError();
@@ -60,6 +63,22 @@ class CreateElement extends Component<Props> {
     this.props.closeOverlay();
   };
 
+  updateSearch = e => {
+    this.setState({ search: e.target.value });
+  };
+
+  select = val => {
+    this.setState({ search: val });
+  };
+
+  updateName = e => {
+    this.setState({ componentName: e.target.value });
+  };
+
+  updateDescription = e => {
+    this.setState({ description: e.target.value });
+  };
+
   render() {
     let theme = this.context;
     let props = this.props;
@@ -80,24 +99,28 @@ class CreateElement extends Component<Props> {
           </div>
         ) : null}
         <div>
-          <br />
-          <br />
-          <br />
-          Component Name:{' '}
-          <input
-            type="text"
-            name="componentName"
-            onChange={this.updateComponentName}
-            value={this.state.componentName}
+          <div className={styles.head}>NEW COMPONENT</div>
+          <Input
+            title="Component Name"
+            placeholder="Enter a name..."
+            search={this.state.componentName}
+            onChange={this.updateName}
           />
-          <br />
-          <br />
-          Description:{' '}
-          <input
-            type="text"
-            name="description"
+          <Input
+            title="Component Description"
+            placeholder="Enter a description..."
+            search={this.state.description}
             onChange={this.updateDescription}
-            value={this.state.description}
+          />
+          <Select
+            children={getTemplates()}
+            select={this.select}
+            search={this.state.search}
+            updateSearch={this.updateSearch}
+            path={props.id}
+            newError={this.newError}
+            clearError={this.clearError}
+            title={'Select Template'}
           />
         </div>
         <div

@@ -1,114 +1,37 @@
-.Select {
-  min-width: 300px;
-  min-height: auto;
-  padding: 20px;
-  z-index: 105;
-}
-
-.dropdown {
-  height: 50px;
-  max-height: 50px;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.33);
-  position: relative;
-  transition: all 0.3s ease;
-}
-.dropdown_title {
+.input_title input {
   min-height: 30px;
   margin-bottom: 0;
   padding: 10px;
   display: flex;
+  /* width: 100%; */
   align-items: center;
   flex-direction: column;
+  flex: 1;
+  border: none;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.33);
+  outline: none !important;
 }
-.dropdown_title:hover {
+.input_title:hover {
   cursor: pointer;
 }
-.dropdown_title svg {
+.input_title svg {
   position: absolute;
   right: 10px;
 }
-
-.animated {
-  transition: all 0.3s ease;
-}
-.rotate {
-  transform: rotate(180deg);
-}
-.opened {
-  height: 250px;
-  max-height: 250px;
-}
-.input {
-  background: rgba(0, 0, 0, 0);
-  border: none;
-  width: 100%;
-  min-height: 30px;
-}
-.list {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  opacity: 0;
-  transition: all 0.3s ease;
-  display: block !important;
-}
-.list li {
-  list-style: none;
-  padding: 10px;
-  margin: 0;
-  height: 30px;
-  display: flex;
-  align-items: center;
-}
-.list li:hover {
-  background: rgb(200, 200, 200);
-}
-.list li:active {
-  background: rgb(190, 190, 190);
-}
-.visible {
-  opacity: 1 !important;
-  display: block !important;
-}
-.titleOpen {
-  max-height: 250px;
-  height: 250px;
-}
-.ulwrap {
-  max-height: 200px;
-  overflow: auto;
-  display: none;
-  width: 100%;
-}
-
-/* This is the button at the bottom of the popup */
-.submit {
-  height: 50px;
+.input_title {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2em;
-  margin-top: 20px;
-
-  /* border-radius: 5px; */
-  transition: all 0.05s ease;
-}
-.submit:hover {
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-}
-.error {
-  margin-bottom: 20px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
   position: relative;
 }
-.error_close {
+.header {
   position: absolute;
-  right: 5px;
+  top: -20px;
+  font-size: 15px;
+  left: 0;
 }
-.error_close:hover {
-  cursor: pointer;
+.headerMargin {
+  margin-top: 35px;
+}
+.headerMargin:nth-child(1) {
+  margin-top: 10px;
 }

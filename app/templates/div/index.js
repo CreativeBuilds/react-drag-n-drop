@@ -45,3 +45,5 @@ export function generateOptions(obj = {}) {
   console.log(str, 'STR');
   return str;
 }
+
+export let options = require('./options');

@@ -29,7 +29,9 @@ class Form extends Component<Props> {
     super(props);
     this.state = {
       selected: null,
+      selectedTemplate: null,
       search: '',
+      searchTemplate: '',
       error: null
     };
     this.submit = () => {
@@ -40,10 +42,16 @@ class Form extends Component<Props> {
   updateSearch = e => {
     this.setState({ search: e.target.value });
   };
+  updateSearchTemplate = e => {
+    this.setState({ searchTemplate: e.target.value });
+  };
 
   select = val => {
-    console.log('SELECTED', val);
     this.setState({ search: val });
+  };
+
+  selectTemplate = val => {
+    this.setState({ searchTemplate: val });
   };
 
   hasValidSelected = () => {
@@ -89,7 +97,6 @@ class Form extends Component<Props> {
         ) : null}
         <Select
           children={childrenElements}
-          submit={this.submit}
           select={this.select}
           search={this.state.search}
           updateSearch={this.updateSearch}
