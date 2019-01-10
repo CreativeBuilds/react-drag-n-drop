@@ -1,5 +1,5 @@
 module.exports = {
-  componentName: 'body',
+  componentName: 'app',
   description: 'This is the background of the site!',
   default: true,
   locked: true,

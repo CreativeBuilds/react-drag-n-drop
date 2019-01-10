@@ -4,12 +4,13 @@ import { ThemeContext } from '../utils/theme-context';
 
 import Select from './Select';
 import Scratch from './Scratch';
+import Form from './Form';
 
 import uuidv4 from 'uuid/v4';
 
-import { addChildToTree } from '../utils/helpers';
+import { addChildToTree, getComponents } from '../utils/helpers';
 
-import DefaultElements from '../utils/default-elements';
+// import DefaultElements from '../utils/default-elements';
 
 type Props = {};
 
@@ -26,8 +27,9 @@ class App extends Component<Props> {
   }
 
   componentDidMount = () => {
-    let obj = DefaultElements;
+    let obj = getComponents();
     let content = obj['app'];
+    console.log(obj);
     this.setState({ children: obj, content });
   };
 
@@ -49,9 +51,10 @@ class App extends Component<Props> {
   addComponent = id => {
     let props = this.props;
     let { updateOverlay, closeOverlay } = props;
+    console.log('RUNNING UPDATE OVERLAY');
     updateOverlay(
-      <Select
-        children={this.state.children}
+      <Form
+        childrenElements={this.state.children}
         submit={this.submit}
         path={id}
         close={closeOverlay}

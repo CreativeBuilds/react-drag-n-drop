@@ -13,13 +13,11 @@ export default function addChildToTree({ id, children, child }) {
     let parent = element;
     let tree = contentPath;
     let keys = path;
-    //console.log(parent, tree, keys, 'start');
     if (!parent.children) parent.children = {};
     let id = uuidv4();
     let copy = Object.assign({}, child);
     copy.id = id;
     parent.children[id] = copy;
-    //console.log(parent, tree, keys, 'end');
     return tree;
   });
 }

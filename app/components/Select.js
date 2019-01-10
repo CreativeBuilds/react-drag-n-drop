@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import routes from '../constants/routes';
 import styles from './Select.css';
 import { ThemeContext } from '../utils/theme-context';
+import PropTypes from 'prop-types';
 
 import uuidv4 from 'uuid/v4';
 
@@ -74,76 +75,54 @@ class Select extends Component<Props> {
     let { children } = props;
     return (
       <div
-        className={styles.Select}
-        style={{ backgroundColor: theme.secondary }}
+        className={styles.dropdown + ' ' + (state.opened ? styles.opened : '')}
+        style={{
+          backgroundColor: theme.secondaryOff,
+          color: theme.secondaryText
+        }}
       >
-        {this.state.error ? (
-          <div
-            className={styles.error}
-            style={{ backgroundColor: theme.error, color: theme.errorText }}
-          >
-            {this.state.error}
-            <MdClose
-              className={styles.error_close}
-              size="24px"
-              onClick={() => {
-                this.clearError();
-              }}
-            />
-          </div>
-        ) : null}
         <div
           className={
-            styles.dropdown + ' ' + (state.opened ? styles.opened : '')
+            styles.dropdown_title + ' ' + (state.opened ? styles.titleOpen : '')
           }
-          style={{
-            backgroundColor: theme.secondaryOff,
-            color: theme.secondaryText
-          }}
         >
+          <input
+            className={styles.input}
+            placeholder={'Search...'}
+            value={props.search}
+            onChange={props.updateSearch}
+            type={'text'}
+            onClick={() => {
+              this.open();
+            }}
+          />
+          <MdKeyboardArrowUp
+            size="32px"
+            className={
+              styles.animated + ' ' + (state.opened ? styles.rotate : '')
+            }
+            onClick={() => {
+              this.toggle();
+            }}
+          />
           <div
             className={
-              styles.dropdown_title +
-              ' ' +
-              (state.opened ? styles.titleOpen : '')
+              styles.ulwrap + ' ' + (state.opened ? styles.visible : '')
             }
           >
-            <input
-              className={styles.input}
-              placeholder={'Search...'}
-              value={this.state.search}
-              onChange={this.updateSearch}
-              type={'text'}
-              onClick={() => {
-                this.open();
-              }}
-            />
-            <MdKeyboardArrowUp
-              size="32px"
+            <ul
               className={
-                styles.animated + ' ' + (state.opened ? styles.rotate : '')
+                styles.list + ' ' + (state.opened ? styles.visible : '')
               }
-              onClick={() => {
-                this.toggle();
-              }}
-            />
-            <div
-              className={
-                styles.ulwrap + ' ' + (state.opened ? styles.visible : '')
-              }
+              style={{ display: this.state.opened ? 'block' : 'none' }}
             >
-              <ul
-                className={
-                  styles.list + ' ' + (state.opened ? styles.visible : '')
-                }
-                style={{ display: this.state.opened ? 'block' : 'none' }}
-              >
-                {Object.keys(children).map(name => {
+              {this.props.liMap ||
+                Object.keys(children).map(name => {
                   if (children[name].generated) return null;
                   return (
                     <li
                       onClick={() => {
-                        this.select(name.toUpperCase());
+                        props.select(name.toUpperCase());
                         this.close();
                       }}
                     >
@@ -151,26 +130,8 @@ class Select extends Component<Props> {
                     </li>
                   );
                 })}
-              </ul>
-            </div>
+            </ul>
           </div>
-        </div>
-        <div
-          className={styles.submit}
-          onClick={() => {
-            if (this.hasValidSelected()) {
-              props.submit(this.state.search, props.path);
-              props.close();
-            } else {
-              this.newError('No valid element selected!');
-            }
-          }}
-          style={{
-            backgroundColor: theme.secondaryText,
-            color: theme.secondary
-          }}
-        >
-          SUBMIT
         </div>
       </div>
     );

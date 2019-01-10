@@ -15,6 +15,7 @@ class Scratch extends Component<Props> {
 
   render() {
     let content = this.props.content;
+    console.log('PROPS', this.props);
     if (!content.children) content.children = {};
     let bgColor;
     if (!content.meta) {

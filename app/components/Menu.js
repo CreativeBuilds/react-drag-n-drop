@@ -37,14 +37,14 @@ const MenuHome = props => {
       >
         ELEMENTS
       </MenuItem>
-      <MenuItem
+      {/* <MenuItem
         theme={props.theme}
         onClick={() => {
           props.changePage(2);
         }}
       >
         GLOBAL VARS
-      </MenuItem>
+      </MenuItem> */}
     </ul>
   );
 };
