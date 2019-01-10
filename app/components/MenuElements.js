@@ -6,6 +6,7 @@ import styles from './MenuElements.css';
 import { ThemeContext } from '../utils/theme-context';
 
 import validFilename from 'valid-filename';
+import { deleteComponent } from '../utils/helpers';
 
 import { MdAdd, MdEdit, MdClose } from 'react-icons/md';
 
@@ -149,8 +150,7 @@ class MenuElements extends Component<Props> {
   };
 
   deleteElement = name => {
-    console.log('TRIED DELETING ELEMENT');
-    return false;
+    deleteComponent(name);
   };
 
   generateElement = vars => {

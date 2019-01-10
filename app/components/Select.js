@@ -118,6 +118,13 @@ class Select extends Component<Props> {
             >
               {this.props.liMap ||
                 Object.keys(children).map(name => {
+                  if (
+                    this.props.search.length > 0 &&
+                    !name.includes(this.props.search.toLowerCase())
+                  ) {
+                    return null;
+                  }
+
                   if (children[name].generated) return null;
                   return (
                     <li
