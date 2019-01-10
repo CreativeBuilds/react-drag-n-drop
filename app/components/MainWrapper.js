@@ -48,6 +48,7 @@ class MainWrapper extends Component<Props> {
 
   makeNewComponent = (opts = {}) => {
     let { name = 'john' } = opts;
+    name = name.toLowerCase();
     if (!validFilename(name)) return;
 
     // Blame FS for this shit \/
