@@ -53,6 +53,11 @@ class CreateElement extends Component<Props> {
     }
     if (!validFilename(name) || name.includes(' ') || name.includes('-')) {
       return this.newError('Invalid name, no special chars!');
+    } else if (name.length === 0) {
+      return this.newError('Please enter a name!');
+    }
+    if (this.state.search === '' || this.state.search === null) {
+      return this.newError('Please select a template to choose from!');
     }
     let obj = Object.assign({}, this.state);
     delete obj.error;
