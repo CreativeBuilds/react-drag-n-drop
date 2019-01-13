@@ -1,0 +1,50 @@
+.Select {
+  min-width: 300px;
+  min-height: auto;
+  padding: 0;
+}
+
+.dropdown {
+  height: 50px;
+  max-height: 50px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.33);
+  position: relative;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+.dropdown_title {
+  min-height: 30px;
+  margin-bottom: 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.dropdown_title:hover {
+  cursor: pointer;
+}
+.dropdown_title svg {
+  /* position: absolute;
+  right: 10px; */
+}
+.header {
+  position: absolute;
+  left: 10px;
+}
+.headerMargin {
+  margin-top: 20px;
+}
+.headerMargin:nth-child(1) {
+  margin-top: 10px;
+}
+
+.toggleWrapper {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+}

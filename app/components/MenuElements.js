@@ -12,6 +12,7 @@ import { MdAdd, MdEdit, MdClose } from 'react-icons/md';
 
 import Select from './Select';
 import Input from './InputText';
+import Toggle from './Toggle';
 
 type Props = {};
 
@@ -24,6 +25,7 @@ class CreateElement extends Component<Props> {
       description: '',
       variables: {},
       error: null,
+      hasChildren: true,
       search: ''
     };
   }
@@ -63,7 +65,8 @@ class CreateElement extends Component<Props> {
     delete obj.error;
     this.props.makeNewComponent({
       name: this.state.componentName,
-      desc: this.state.description
+      desc: this.state.description,
+      hasChildren: this.state.hasChildren
     });
     this.props.closeOverlay();
   };
@@ -82,6 +85,10 @@ class CreateElement extends Component<Props> {
 
   updateDescription = e => {
     this.setState({ description: e.target.value });
+  };
+
+  updateHasChildren = () => {
+    this.setState({ hasChildren: !this.state.hasChildren });
   };
 
   render() {
@@ -116,6 +123,11 @@ class CreateElement extends Component<Props> {
             placeholder="Enter a description..."
             search={this.state.description}
             onChange={this.updateDescription}
+          />
+          <Toggle
+            title="Has Children"
+            onClick={this.updateHasChildren}
+            value={this.state.hasChildren}
           />
           <Select
             children={getTemplates()}

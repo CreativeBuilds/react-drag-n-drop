@@ -1,7 +1,7 @@
 // imports is an array of strings
 
 export function generateComponent(obj = {}) {
-  let { content = '', imports = [] } = obj;
+  let { content = '', imports = [], hasChildren = true } = obj;
   imports.join('\n');
   return `
 import React, { Component } from 'react';
@@ -18,7 +18,7 @@ export default class Main extends Component<Props> {
   }
     
   render() {
-    return <div>${content}</div>;
+    return <div>${hasChildren ? content : null}</div>;
   }
 }`;
 }
@@ -36,13 +36,13 @@ export function generateOptions(obj = {}) {
       locked: false,
       description: '',
       meta: { backgroundColor: '#b4b4b4' },
-      componentName: 'placeholder'
+      componentName: 'placeholder',
+      hasChildren
     },
     options
   );
   let str = `module.exports = ${JSON.stringify(options)};
   `.toString('utf8');
-  console.log(str, 'STR');
   return str;
 }
 

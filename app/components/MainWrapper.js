@@ -47,7 +47,7 @@ class MainWrapper extends Component<Props> {
   };
 
   makeNewComponent = (opts = {}) => {
-    let { name = 'john' } = opts;
+    let { name = 'john', hasChildren = true } = opts;
     name = name.toLowerCase();
     if (!validFilename(name)) return;
 
@@ -60,7 +60,7 @@ class MainWrapper extends Component<Props> {
         fs.writeFile(
           __dirname + `/siteComponents/${name}` + '/options.js',
           require('../templates/div').generateOptions({
-            options: { componentName: name }
+            options: { componentName: name, hasChildren }
           }),
           err => {
             if (err) throw err;
@@ -68,7 +68,9 @@ class MainWrapper extends Component<Props> {
         );
         fs.writeFile(
           __dirname + `/siteComponents/${name}` + '/app.js',
-          require('../templates/div').generateComponent(),
+          require('../templates/div').generateComponent({
+            hasChildren: hasChildren
+          }),
           err => {
             if (err) throw err;
           }
