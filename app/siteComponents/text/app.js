@@ -13,6 +13,6 @@ export default class Main extends Component<Props> {
   }
     
   render() {
-    return <div></div>;
+    return <div>null</div>;
   }
 }

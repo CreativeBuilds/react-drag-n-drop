@@ -3,7 +3,10 @@ module.exports = {
   description: 'This is the background of the site!',
   default: true,
   locked: true,
-  meta: {
-    backgroundColor: '#343434'
-  }
+  vars: {
+    style: {
+      backgroundColor: '#343434'
+    }
+  },
+  hasChildren: true
 };

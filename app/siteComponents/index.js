@@ -7,12 +7,4 @@ fs.readdirSync(normalizedPath).forEach(file => {
     obj[file.replace('.js', '')] = require('./' + file + '/app.js');
   }
 });
-console.log(obj, 'REEEEEEEE');
 export default obj;
-
-// module.exports = {
-//   app: require('./app/app'),
-//   body: require('./body/app'),
-//   test: require('./test/app'),
-//   blah: require('./blah/app')
-// };

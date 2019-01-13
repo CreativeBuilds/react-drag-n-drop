@@ -14,18 +14,23 @@ class Scratch extends Component<Props> {
   }
 
   render() {
-    let content = this.props.content;
-    console.log('PROPS', this.props);
+    let { props } = this;
+    let { content } = props;
+    let vars = {};
     if (!content.children) content.children = {};
-    let bgColor;
-    if (!content.meta) {
-      bgColor = 'blue';
-    } else if (!content.meta.backgroundColor) {
-      bgColor = 'blue';
+    let bgColor = 'blue';
+    if (!content.vars || !content.vars.style) {
     } else {
-      bgColor = content.meta.backgroundColor;
+      vars = content.vars;
+      if (!content.vars.style.backgroundColor) {
+      } else {
+        console.log('Setting BGColor');
+        bgColor = content.vars.style.backgroundColor;
+      }
     }
-    let style = this.props.style || {};
+    // console.log(vars.style, props.style);
+    let varStyle = Object.assign({}, vars.style);
+    let style = Object.assign(Object.assign(props.style || {}, {}), varStyle);
     style.backgroundColor = bgColor;
     return (
       <div className={styles.wrapper} style={style}>
@@ -33,13 +38,15 @@ class Scratch extends Component<Props> {
           {(content.componentName || '').toUpperCase()}
         </div>
         <div className={styles.add}>
-          <MdAddCircle
-            size="24px"
-            onClick={() => {
-              let id = this.props.parent ? this.props.parent : '/';
-              this.props.addComponent(id);
-            }}
-          />
+          {content.hasChildren ? (
+            <MdAddCircle
+              size="24px"
+              onClick={() => {
+                let id = this.props.parent ? this.props.parent : '/';
+                this.props.addComponent(id);
+              }}
+            />
+          ) : null}
         </div>
         {Object.keys(content.children).map(key => {
           let child = content.children[key];

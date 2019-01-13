@@ -29,13 +29,17 @@ export function generateCss(obj = {}) {
 }
 
 export function generateOptions(obj = {}) {
-  let { options } = obj;
+  let { options, hasChildren = true } = obj;
   options = Object.assign(
     {
       default: false,
       locked: false,
       description: '',
-      meta: { backgroundColor: '#b4b4b4' },
+      vars: {
+        style: {
+          backgroundColor: '#b4b4b4'
+        }
+      },
       componentName: 'placeholder',
       hasChildren
     },
