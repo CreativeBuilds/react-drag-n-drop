@@ -14,8 +14,8 @@ class Overlay extends Component<Props> {
 
   render() {
     let { theme, props } = this;
+    let { component, secondaryComponent } = props;
     if (!props.component || props.component === null) return null;
-    console.log('Should render component!');
     return (
       <div className={styles.overlay} data-tid="overlay">
         <div
@@ -24,7 +24,16 @@ class Overlay extends Component<Props> {
             this.props.onClick();
           }}
         />
-        {props.component}
+        <div
+          style={
+            secondaryComponent
+              ? { display: 'none', zIndex: '104' }
+              : { zIndex: '104' }
+          }
+        >
+          {props.component}
+        </div>
+        {props.secondaryComponent || null}
       </div>
     );
   }

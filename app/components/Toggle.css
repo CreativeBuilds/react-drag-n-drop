@@ -25,10 +25,6 @@
 .dropdown_title:hover {
   cursor: pointer;
 }
-.dropdown_title svg {
-  /* position: absolute;
-  right: 10px; */
-}
 .header {
   position: absolute;
   left: 10px;

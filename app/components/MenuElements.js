@@ -13,6 +13,7 @@ import { MdAdd, MdEdit, MdClose } from 'react-icons/md';
 import Select from './Select';
 import Input from './InputText';
 import Toggle from './Toggle';
+import Variables from './Variables';
 
 type Props = {};
 
@@ -23,10 +24,15 @@ class CreateElement extends Component<Props> {
       componentName: '',
       default: false,
       description: '',
-      variables: {},
+      vars: {
+        style: {
+          backgroundColor: '#3f3f3f'
+        }
+      },
       error: null,
       hasChildren: true,
-      search: ''
+      search: '',
+      searchVariable: ''
     };
   }
 
@@ -94,6 +100,7 @@ class CreateElement extends Component<Props> {
   render() {
     let theme = this.context;
     let props = this.props;
+    console.log('PROPS 2', props);
     return (
       <div
         className={styles.createElement}
@@ -129,12 +136,21 @@ class CreateElement extends Component<Props> {
             onClick={this.updateHasChildren}
             value={this.state.hasChildren}
           />
+          <Variables
+            title="Variables"
+            placeholder="Search..."
+            children={Object.assign({}, this.state.vars)}
+            search={this.state.searchVariable}
+            updateSearch={this.updateSearchVariable}
+            path={props.id}
+            makeOverlay={props.updateSecondaryOverlay}
+          />
           <Select
             children={getTemplates()}
-            select={this.select}
             search={this.state.search}
             updateSearch={this.updateSearch}
             path={props.id}
+            select={this.select}
             newError={this.newError}
             clearError={this.clearError}
             title={'Select Template'}
@@ -267,6 +283,7 @@ class MenuElements extends Component<Props> {
         closeOverlay={props.closeOverlay}
         Elements={props.Elements}
         makeNewComponent={props.makeNewComponent}
+        updateSecondaryOverlay={props.updateSecondaryOverlay}
       />
     );
   };

@@ -72,6 +72,7 @@ class Menu extends Component<Props> {
   render() {
     let theme = this.context;
     let props = this.props;
+    console.log('PROPS 3333', props);
     return (
       <div
         className={styles.container}
@@ -90,6 +91,7 @@ class Menu extends Component<Props> {
             closeOverlay={props.closeOverlay}
             Elements={props.ScratchElements}
             makeNewComponent={props.makeNewComponent}
+            updateSecondaryOverlay={props.updateSecondaryOverlay}
           />
         ) : null}
         {this.state.page == 2 ? (

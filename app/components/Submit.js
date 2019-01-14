@@ -27,6 +27,7 @@ class Select extends Component<Props> {
       <div
         className={styles.submit}
         onClick={() => {
+          console.log('1');
           if (props.hasValidSelected()) {
             props.submit();
             props.close();

@@ -30,6 +30,7 @@ class MainWrapper extends Component<Props> {
     super(props);
     this.state = {
       component: null,
+      secondaryComponent: null,
       components: ScratchElements
     };
   }
@@ -40,6 +41,10 @@ class MainWrapper extends Component<Props> {
 
   updateOverlay = component => {
     this.setState({ component });
+  };
+
+  updateSecondaryOverlay = secondaryComponent => {
+    this.setState({ secondaryComponent });
   };
 
   closeOverlay = () => {
@@ -99,12 +104,18 @@ class MainWrapper extends Component<Props> {
           closeOverlay={this.closeOverlay}
           ScratchElements={ScratchElements}
           makeNewComponent={this.makeNewComponent}
+          updateSecondaryOverlay={this.updateSecondaryOverlay}
         />
         <App
           updateOverlay={this.updateOverlay}
           closeOverlay={this.closeOverlay}
+          updateSecondaryOverlay={this.updateSecondaryOverlay}
         />
-        <Overlay component={this.state.component} onClick={this.closeOverlay} />
+        <Overlay
+          component={this.state.component}
+          secondaryComponent={this.state.secondaryComponent}
+          onClick={this.closeOverlay}
+        />
       </div>
     );
   }
