@@ -4,9 +4,19 @@
   max-height: 80vh;
   overflow: auto;
   padding: 20px;
+  position: relative;
   z-index: 105;
 }
 
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 106;
+}
+.close:hover {
+  cursor: pointer;
+}
 .dropdown {
   height: 50px;
   max-height: 50px;
@@ -113,4 +123,10 @@
 }
 .error_close:hover {
   cursor: pointer;
+}
+.head {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }

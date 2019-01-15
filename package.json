@@ -57,8 +57,8 @@
   },
   "main": "./app/main.prod.js",
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "React-Drag-N-Drop",
+    "appId": "org.develar.React-Drag-N-Drop",
     "files": [
       "app/dist/",
       "app/app.html",

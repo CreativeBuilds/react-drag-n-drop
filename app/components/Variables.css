@@ -3,6 +3,9 @@
   min-height: auto;
   padding: 0;
 }
+.close:hover {
+  cursor: pointer;
+}
 
 .dropdown {
   height: 50px;
@@ -35,7 +38,7 @@
   transform: rotate(180deg);
 }
 .opened {
-  height: 250px;
+  height: auto;
   max-height: 250px;
 }
 .input {
@@ -72,7 +75,7 @@
 }
 .titleOpen {
   max-height: 250px;
-  height: 250px;
+  height: auto;
 }
 .ulwrap {
   max-height: 200px;

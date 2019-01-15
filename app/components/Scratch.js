@@ -24,7 +24,6 @@ class Scratch extends Component<Props> {
       vars = content.vars;
       if (!content.vars.style.backgroundColor) {
       } else {
-        console.log('Setting BGColor');
         bgColor = content.vars.style.backgroundColor;
       }
     }

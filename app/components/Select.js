@@ -46,6 +46,9 @@ class Select extends Component<Props> {
   };
 
   updateSearch = e => {
+    if (!this.state.opened) {
+      return this.setState({ opened: true, search: e.target.value });
+    }
     this.setState({ search: e.target.value });
   };
 

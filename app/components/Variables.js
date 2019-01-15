@@ -185,6 +185,14 @@ class NewVariable extends Component<Props> {
         >
           CREATE
         </div>
+        <MdClose
+          className={styles.close}
+          onClick={() => {
+            props.makeOverlay(null);
+          }}
+          style={{ position: 'absolute', top: 0, right: 0 }}
+          size="36px"
+        />
       </div>
     );
   }
@@ -247,7 +255,12 @@ class Variables extends Component<Props> {
   };
 
   overlay = theme => {
-    this.props.makeOverlay(<NewVariable addVariable={this.addVariable} />);
+    this.props.makeOverlay(
+      <NewVariable
+        addVariable={this.addVariable}
+        makeOverlay={this.props.makeOverlay}
+      />
+    );
   };
 
   render() {

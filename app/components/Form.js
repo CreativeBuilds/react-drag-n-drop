@@ -88,13 +88,25 @@ class Form extends Component<Props> {
             {this.state.error}
             <MdClose
               className={styles.error_close}
-              size="24px"
+              size="32px"
               onClick={() => {
                 this.clearError();
               }}
             />
           </div>
-        ) : null}
+        ) : (
+          <MdClose
+            className={styles.close}
+            size="32px"
+            style={{ color: theme.secondaryText }}
+            onClick={() => {
+              props.close();
+            }}
+          />
+        )}
+        <div className={styles.head} style={{ color: theme.secondaryText }}>
+          SELECT COMPONENT
+        </div>
         <Select
           children={childrenElements}
           select={this.select}

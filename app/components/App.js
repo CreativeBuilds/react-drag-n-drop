@@ -51,7 +51,6 @@ class App extends Component<Props> {
   addComponent = id => {
     let props = this.props;
     let { updateOverlay, closeOverlay } = props;
-    console.log('RUNNING UPDATE OVERLAY');
     updateOverlay(
       <Form
         childrenElements={this.state.children}

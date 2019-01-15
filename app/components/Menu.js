@@ -72,7 +72,6 @@ class Menu extends Component<Props> {
   render() {
     let theme = this.context;
     let props = this.props;
-    console.log('PROPS 3333', props);
     return (
       <div
         className={styles.container}

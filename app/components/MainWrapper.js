@@ -48,7 +48,7 @@ class MainWrapper extends Component<Props> {
   };
 
   closeOverlay = () => {
-    this.setState({ component: null });
+    this.setState({ component: null, secondaryComponent: null });
   };
 
   makeNewComponent = (opts = {}) => {
